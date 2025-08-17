@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kartu Ucapan Interaktif</title>
+  <title>Kartu Ucapan</title>
   <style>
     body {
       display: flex;
@@ -23,37 +23,13 @@
       text-align: center;
       box-shadow: 0 10px 20px rgba(0,0,0,0.2);
       animation: pop 1s ease;
-      width: 320px;
+      max-width: 400px;
     }
 
     h1 {
-      font-size: 22px;
+      font-size: 24px;
       color: #444;
     }
-
-    input {
-      margin: 8px 0;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      width: 90%;
-    }
-
-    button {
-      margin-top: 12px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      background: #9795ef;
-      color: white;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    button:hover {
-      background: #7a78d7;
-    }
-
-    .hidden { display: none; }
 
     .star {
       font-size: 50px;
@@ -88,62 +64,28 @@
   </style>
 </head>
 <body>
-  <div class="card" id="card">
-    <div id="step1">
-      <h1>Hai 👋 Siapa namamu?</h1>
-      <input type="text" id="nameInput" placeholder="Tulis nama kamu...">
-      <button onclick="nextStep()">Lanjut</button>
-    </div>
+  <div class="card">
+    <div class="star">🌟</div>
+    <h1>Selamat atas pencapaianmu hari ini!</h1>
+    <p>Kamu hebat 🎉</p>
 
-    <div id="step2" class="hidden">
-      <h1>Halo <span id="name"></span> ✨</h1>
-      <p>Ceritain dong, pencapaian kecil apa yang bikin kamu bahagia hari ini?</p>
-      <input type="text" id="achievementInput" placeholder="Contoh: bangun pagi">
-      <button onclick="showMessage()">Lanjut</button>
-    </div>
-
-    <div id="step3" class="hidden">
-      <div class="star">🌟</div>
-      <h1 id="message"></h1>
-      <p>Kamu hebat 🎉</p>
-      <button onclick="playMusic()">▶ Putar Musik</button>
-    </div>
+    <!-- Spotify Embed -->
+    <iframe style="border-radius:12px;margin-top:15px" 
+      src="https://open.spotify.com/embed/track/2x3vwXWuecPrRqgEUuSUJA?utm_source=generator" 
+      width="100%" height="152" frameBorder="0" allowfullscreen="" 
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+    </iframe>
   </div>
 
-  <!-- Confetti + Interaksi -->
+  <!-- Confetti -->
   <script>
-    function nextStep() {
-      let name = document.getElementById("nameInput").value;
-      if(name.trim() === "") return alert("Isi dulu namanya ya 😊");
-      document.getElementById("name").innerText = name;
-      document.getElementById("step1").classList.add("hidden");
-      document.getElementById("step2").classList.remove("hidden");
-    }
-
-    function showMessage() {
-      let ach = document.getElementById("achievementInput").value;
-      if(ach.trim() === "") return alert("Coba isi dulu pencapaianmu 😍");
-      document.getElementById("message").innerText = 
-        `Selamat ${document.getElementById("name").innerText}! 🌸` +
-        ` Karena sudah berhasil ${ach}, semoga makin bahagia ya 💕`;
-      document.getElementById("step2").classList.add("hidden");
-      document.getElementById("step3").classList.remove("hidden");
-
-      // Confetti muncul
-      for (let i = 0; i < 30; i++) {
-        let confetti = document.createElement("div");
-        confetti.classList.add("confetti");
-        confetti.style.left = Math.random() * 100 + "vw";
-        confetti.style.background = `hsl(${Math.random()*360}, 70%, 60%)`;
-        confetti.style.animationDuration = (2 + Math.random()*3) + "s";
-        document.body.appendChild(confetti);
-      }
-    }
-
-    function playMusic() {
-      // contoh: musik gratis dari SoundHelix
-      let audio = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
-      audio.play();
+    for (let i = 0; i < 30; i++) {
+      let confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      confetti.style.left = Math.random() * 100 + "vw";
+      confetti.style.background = `hsl(${Math.random()*360}, 70%, 60%)`;
+      confetti.style.animationDuration = (2 + Math.random()*3) + "s";
+      document.body.appendChild(confetti);
     }
   </script>
 </body>
